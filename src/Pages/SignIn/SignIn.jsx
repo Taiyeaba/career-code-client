@@ -2,10 +2,11 @@ import React, { use } from 'react';
 import { AuthContext } from '../../Context/AuthContext/AuthContext';
 import Lottie from "lottie-react";
 import logIn from '../../assets/login.json';
+import SocialLogin from '../Shared/SocialLogin';
 
 const SignIn = () => {
 
-   const { createUser } = use(AuthContext);
+   const {signInUser} = use(AuthContext);
    
      const handleSignIn = e => {
        e.preventDefault();
@@ -15,15 +16,15 @@ const SignIn = () => {
        console.log(email, password);
    
    
-       //createUser
-       createUser(email, password)
-         .then(result => {
-           console.log(result.user)
-         })
-         .catch(error => {
-           console.log(error);
-         })
-   
+       //signin User
+       signInUser(email, password)
+      .then(result => {
+        console.log(result.user)
+      })
+      .catch(error => {
+        console.log(error);
+      })
+
      }
    
  
@@ -40,7 +41,7 @@ const SignIn = () => {
     </div>
     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
       <div className="card-body">
-        <h1 className="text-5xl font-bold">Register Now!</h1>
+        <h1 className="text-5xl font-bold">Sign In Now!</h1>
        <form onSubmit={handleSignIn}>
          <fieldset className="fieldset">
           <label className="label">Email</label>
@@ -48,9 +49,10 @@ const SignIn = () => {
           <label className="label">Password</label>
           <input type="password" name="password" className="input" placeholder="Password" />
           <div><a className="link link-hover">Forgot password?</a></div>
-          <button className="btn btn-neutral mt-4">Login</button>
+          <button className="btn btn-neutral mt-4">Sign In</button>
         </fieldset>
        </form>
+       <SocialLogin></SocialLogin>
       </div>
     </div>
   </div>
